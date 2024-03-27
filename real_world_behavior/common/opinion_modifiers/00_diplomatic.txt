@@ -11,11 +11,14 @@ opinion_modifiers = {
 		months = 18
 		decay = 1
 	}
-	### CUSTOM DIPLOMATIC
+	### CUSTOM DIPLOMATIC - ELLOS A NOSOTROS
 	they_want_war = {
 		value = -50
 	}
 	improving_relations = {
 		value = 60
+	}
+	foreign_interference = {
+		value = -20
 	}
 }

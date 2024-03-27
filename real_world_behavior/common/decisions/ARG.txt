@@ -10,9 +10,9 @@
 #
 make_argentina_great_again = {
 	########################################################################################################################
-	# Campaña de Desinformación
+	# Campaña: Financiar y armar grupos de oposición política ✅
 	########################################################################################################################
-	tension_con_uruguay = {
+	APOYO_REBELDE = {
 		available = {
 			tag = ARG
 			country_exists = URG
@@ -20,110 +20,177 @@ make_argentina_great_again = {
 		allowed = {
 			always = yes
 		}
+		cost = 10
+		fire_only_once = no
+		days_re_enable = 15
+		complete_effect = {
+			country_event = {
+				id = effect_for_urg.1
+				days = 7
+			}
+		}
+	}
+	########################################################################################################################
+	# Campaña: Propaganda ✅
+	########################################################################################################################
+	PROPAGANDA = {
+		available = {
+			tag = ARG
+			country_exists = URG
+			URG = {
+				fascism > 0.1
+			}
+		}
+		allowed = {
+			always = yes
+		}
+		cost = 30
 		fire_only_once = yes
 		complete_effect = {
 			country_event = {
-				id = argentina_propaganda.1
+				id = effect_for_urg.2
+				days = 60
 			}
 		}
-		cost = 10
 	}
-	#
-	#
-	#
 	########################################################################################################################
-	# Movilizar Armada
+	# Campaña: Sabotaje ✅
 	########################################################################################################################
-	armada_movilizada = {
+	SABOTAJE = {
 		available = {
-			original_tag = ARG
+			tag = ARG
 			country_exists = URG
+			URG = {
+				fascism > 0.1
+			}
+		}
+		allowed = {
+			always = yes
+		}
+		cost = 30
+		fire_only_once = yes
+		complete_effect = {
+			country_event = {
+				id = effect_for_urg.4
+				days = 7
+			}
+		}
+	}
+	########################################################################################################################
+	# Campaña: Alianza Regional ✅
+	########################################################################################################################
+	ALIANZA_REGIONAL = {
+		available = {
+			tag = ARG
+			country_exists = URG
+			URG = {
+				fascism > 0.2
+			}
+		}
+		allowed = {
+			always = yes
+		}
+		cost = 50
+		fire_only_once = yes
+		complete_effect = {
+			country_event = {
+				id = effect_for_urg.5
+				days = 7
+			}
+		}
+	}
+	########################################################################################################################
+	# Campaña: EMBARGO ✅
+	########################################################################################################################
+	EMBARGO = {
+		available = {
+			tag = ARG
+			country_exists = URG
+			URG = {
+				fascism > 0.3
+			}
+		}
+		allowed = {
+			always = yes
+		}
+		cost = 50
+		fire_only_once = yes
+		complete_effect = {
+			country_event = {
+				id = effect_for_urg.7
+				days = 7
+			}
+		}
+	}
+	########################################################################################################################
+	# Campaña: Liberacion✅
+	########################################################################################################################
+	LIBEREMOS_URUGUAY = {
+		available = {
+			tag = ARG
+			country_exists = URG
+			URG = {
+				fascism > 0.35
+			}
+		}
+		allowed = {
+			always = yes
+		}
+		cost = 100
+		fire_only_once = yes
+		complete_effect = {
+			country_event = {
+				id = effect_for_urg.8
+				days = -1
+			}
+		}
+	}
+	########################################################################################################################
+	# Campaña: Movilizar Ejercito ✅
+	########################################################################################################################
+	MOVILIZAR_EJERCITO = {
+		available = {
+			tag = ARG
+			country_exists = URG
+			URG = {
+				fascism > 0.4
+			}
 			divisions_in_border_state = {
-				size = 8
+				size > 10
 				state = 510
 				border_state = 300
 			}
-			300 = {
-				is_core_of = ARG
-			}
 		}
 		allowed = {
 			always = yes
 		}
-		cost = 100
+		cost = 10
 		fire_only_once = yes
 		complete_effect = {
-			create_wargoal = {
-				target = URG
-				type = take_claimed_state
-			}
 			country_event = {
-				id = uruguay.2
+				id = effect_for_urg.9
+				days = -1
 			}
 		}
 	}
-	#
-	#
-	#
 	########################################################################################################################
-	# INICIAR GUERRA CON URUGUAY
+	# Campaña: TOMAR ESTADO ⏱️
 	########################################################################################################################
-	recuperemos_lo_nuestro = {
-		icon = border_war
-		available = {
-			has_wargoal_against = URG
-			from = {
-				any_owned_state = {
-					is_controlled_by = ARG
-					any_neighbor_state = {
-						is_fully_controlled_by = URG
-					}
-					NOT = {
-						has_state_flag = border_incident_active
-					}
-				}
-			}
-			NOT = {
-				has_non_aggression_pact_with = ARG
-			}
-		}
-		visible = {
-			from = {
-				exists = yes
-			}
-			NOT = {
-				has_war_with = ARG
-			}
-		}
-		cost = 100
-		fire_only_once = no
-		war_with_target_on_remove = yes
-		complete_effect = {
-			declare_war_on = {
-				target = URG
-				type = take_claimed_state
-			}
-		}
-	}
-	#
-	#
-	#
-	########################################################################################################################
-	# INCREMENTAR TENSION CON BOLIVIA
-	########################################################################################################################
-	tension_con_bolivia = {
+	TOMEMOS_URUGUAY = {
 		available = {
 			tag = ARG
-			country_exists = BOL
+			country_exists = URG
+			has_wargoal_against = URG
 		}
 		allowed = {
 			always = yes
 		}
+		cost = 100
 		fire_only_once = yes
-		cost = 10
 		complete_effect = {
 			country_event = {
-				id = bolivia.1
+				id = effect_for_urg.11
+				days = 3
 			}
 		}
 	}

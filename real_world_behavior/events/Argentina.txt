@@ -19,28 +19,50 @@ add_namespace = bolivia
 add_namespace = bolivia_response
 add_namespace = bolivia_uruguay_pressure
 add_namespace = usa_reprimand
+add_namespace = desestabilizar_urg
+add_namespace = effect_for_urg
+add_namespace = usa_helper
 #
 #
 #
 ############################################################################################################################
-# Campaña de Desinformación
+# Campaña: Financiar y armar grupos de oposición política ✅
 ############################################################################################################################
 country_event = {
-	id = argentina_propaganda.1
-	title = "Propaganda Argentina sobre Uruguay"
-	desc = "Argentina difunde propaganda falsa, alegando que Uruguay conspira con el Reino Unido para invadir la Patagonia y la Pampa, y usurpar las Islas Malvinas. Esta estratagema busca justificar una posible guerra de reclamación territorial y ganar apoyo popular."
+	id = effect_for_urg.1
+	title = "Descubrimiento de Financiamiento Extranjero a Grupos Opositores"
+	desc = "Grupos de oposición uruguayos reciben financiamiento y armas de Argentina, generando indignación y tensiones. Como resultado, se intensifica la vigilancia sobre estos grupos y se incrementa la presión diplomática sobre Argentina."
 	is_triggered_only = yes
 	option = {
-		name = "Activar Campaña de Desinformación"
-		add_stability = 0.3
-		add_war_support = 0.3
+		name = "Activar Financiamiento"
+		# Nuestra opinion de Uruguay
+		add_opinion_modifier = {
+			target = URG
+			modifier = we_are_destabilizing
+		}
+		# Opinion de Uruguay sobre nosotros
+		reverse_add_opinion_modifier = {
+			target = URG
+			modifier = foreign_interference
+		}
 		ai_chance = {
-			factor = 0
+			factor = 10
 		}
-		country_event = {
-			id = uruguay_reponse.1
-			days = 15
+		URG = {
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.04
+			}
+			add_stability = -0.025
+			add_war_support = -0.016
 		}
+		#		USA = {
+		#			diplomatic_relation = {
+		#				country = URG
+		#				relation = guarantee
+		#				active = no
+		#			}
+		#		}
 	}
 }
 
@@ -48,56 +70,259 @@ country_event = {
 #
 #
 ############################################################################################################################
-# Uruguay responde a nuestra propaganda
+# Campaña: Propaganda ✅
 ############################################################################################################################
 country_event = {
-	id = uruguay_reponse.1
-	title = "Uruguay Responde a Nuestra Propaganda"
-	desc = "Uruguay ha recibido nuestros periódicos, enterándose de nuestra propaganda. Como respuesta, han optado por una acción diplomática. Este incidente ha deteriorado las relaciones bilaterales y ha aumentado las tensiones entre ambas naciones."
+	id = effect_for_urg.2
+	title = "Campañas de Propaganda Extranjera"
+	desc = "Argentina despliega propaganda para debilitar al gobierno uruguayo. En respuesta, Uruguay refuerza leyes y lanza una contraofensiva diplomatica."
 	is_triggered_only = yes
 	option = {
-		name = "Esta Fue la Reacción de Uruguay"
-		# Nuestra opinion de Uruguay
-		add_opinion_modifier = {
-			target = URG
-			modifier = its_our_right
-		}
-		# Opinion de Uruguay sobre nosotros
-		reverse_add_opinion_modifier = {
-			target = URG
-			modifier = they_want_war
+		name = "Maravillosa Jugada"
+		URG = {
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.15
+			}
+			add_stability = -0.15
+			add_war_support = -0.08
 		}
 		country_event = {
-			id = uruguay.1
+			id = effect_for_urg.3
 			days = 30
 		}
 	}
 }
 
-#
-#
-#
-############################################################################################################################
-# Incrememtar la tension con Uruguay
-############################################################################################################################
+# Uruguay le pide ayuda a USA
 country_event = {
-	id = uruguay.1
-	title = "Declaración de Soberanía Argentina sobre Uruguay"
-	desc = "Argentina proclama el territorio uruguayo como propio, reviviendo antiguas aspiraciones territoriales y evocando el orgullo nacional argentino."
+	id = effect_for_urg.3
+	title = "Uruguay solicita asistencia de sus aliados para combatir el creciente fascismo"
+	desc = "Debido al aumento del fascismo en Uruguay, el país busca ayuda de Estados Unidos para contener las células fascistas que se propagan rápidamente."
 	is_triggered_only = yes
 	option = {
-		name = "Es nuestro derecho histórico legítimo"
-		add_political_power = -50
-		# Nuestra opinion sobre Uruguay
-		add_opinion_modifier = {
-			target = URG
-			modifier = its_our_right
+		name = "¡¿QUÉ URUGUAY QUÉ?!"
+		country_event = {
+			id = usa_helper.1
+			days = 15
 		}
-		# Opinion de Urugauy sobre nosotros
+	}
+}
+
+# USA ayuda a Uruguay
+country_event = {
+	id = usa_helper.1
+	title = "Estados Unidos Acude al Rescate de Uruguay"
+	desc = "Estados Unidos envía refuerzos policiales e inteligencia a Uruguay para contrarrestar el peligro del fascismo, mejorando la seguridad regional."
+	is_triggered_only = yes
+	option = {
+		name = "¡PERO SERÁN...!"
+		URG = {
+			add_popularity = {
+				ideology = fascism
+				popularity = -0.3
+			}
+			add_stability = 0.3
+			add_war_support = 0.1
+		}
+	}
+}
+
+#
+#
+#
+############################################################################################################################
+# Campaña: Sabotaje ✅
+############################################################################################################################
+country_event = {
+	id = effect_for_urg.4
+	title = "Sabotaje Argentino a Fábricas Civiles y Militares en Uruguay"
+	desc = "Argentina ha saboteado infraestructuras en Uruguay: una fábrica civil y otra militar fueron atacadas. La situación podría salirse de control. Se investiga la posible implicación de agentes extranjeros."
+	is_triggered_only = yes
+	option = {
+		name = "¿Y si descubren la verdad?"
+		# Opinion de Uruguay sobre nosotros
 		reverse_add_opinion_modifier = {
 			target = URG
-			modifier = they_want_war
+			modifier = foreign_interference
 		}
+		add_threat = 1
+		URG = {
+			ideology = fascism
+			popularity = 0.1
+		}
+	}
+}
+
+#
+#
+#
+############################################################################################################################
+# Campaña: Alianza Regional ✅
+############################################################################################################################
+country_event = {
+	id = effect_for_urg.5
+	title = "Alianzas regionales"
+	desc = "Argentina ha estado manipulando a varios países de la región para obtener apoyo y retratar el auge fascista en Uruguay como una amenaza para el Cono Sur. Esto refleja una estrategia de influencia regional para legitimar acciones futuras."
+	is_triggered_only = yes
+	option = {
+		name = "Bolivia, Brasil y Chile se han unido a nuestra causa."
+		# Opinion de Uruguay sobre nosotros
+		reverse_add_opinion_modifier = {
+			target = URG
+			modifier = foreign_interference
+		}
+		BRA = {
+			# Nuestra opinion de Uruguay
+			add_opinion_modifier = {
+				target = URG
+				modifier = we_are_destabilizing
+			}
+			# Nuestra opinion de Argentina
+			add_opinion_modifier = {
+				target = ARG
+				modifier = improving_relations
+			}
+		}
+		BOL = {
+			# Nuestra opinion de Uruguay
+			add_opinion_modifier = {
+				target = URG
+				modifier = we_are_destabilizing
+			}
+			# Nuestra opinion de Argentina
+			add_opinion_modifier = {
+				target = ARG
+				modifier = improving_relations
+			}
+		}
+		CHI = {
+			# Nuestra opinion de Uruguay
+			add_opinion_modifier = {
+				target = URG
+				modifier = we_are_destabilizing
+			}
+			# Nuestra opinion de Argentina
+			add_opinion_modifier = {
+				target = ARG
+				modifier = improving_relations
+			}
+		}
+		country_event = {
+			id = effect_for_urg.6
+		}
+	}
+}
+
+# Campana Nacionalista Contra Uruguay
+country_event = {
+	id = effect_for_urg.6
+	title = "Propaganda Interna"
+	desc = "Tras las acciones internacionales contra Uruguay, Argentina inicia una campaña interna para fortalecer el respaldo gubernamental y ciudadano ante una posible confrontación. Busca mejorar la aceptación del gobierno y preparar el terreno para una escalada de tensiones con Uruguay."
+	is_triggered_only = yes
+	option = {
+		name = "¡El pueblo unido, jamás será vencido!"
+		# Opinion de Uruguay sobre nosotros
+		add_popularity = {
+			ideology = neutrality
+			popularity = 0.25
+		}
+		add_war_support = 0.15
+		add_stability = 0.25
+		add_political_power = 100
+	}
+}
+
+#
+#
+#
+############################################################################################################################
+# Campaña: Embargo Internacional ✅
+############################################################################################################################
+country_event = {
+	id = effect_for_urg.7
+	title = "Embargos y sanciones"
+	desc = "Argentina presiona a la comunidad internacional para imponer embargos y sanciones económicas contra Uruguay, debilitando su economía y su posición en el escenario mundial."
+	is_triggered_only = yes
+	option = {
+		name = "Aquí tienen su libre comercio"
+		# Opinion de Uruguay sobre nosotros
+		reverse_add_opinion_modifier = {
+			target = URG
+			modifier = foreign_interference
+		}
+		send_embargo = URG
+		add_threat = 2
+		BRA = {
+			# Nuestra opinion de Uruguay
+			add_opinion_modifier = {
+				target = URG
+				modifier = we_are_destabilizing
+			}
+			# Opinion de Uruguay sobre nosotros
+			reverse_add_opinion_modifier = {
+				target = URG
+				modifier = foreign_interference
+			}
+			# Nuestra opinion de Argentina
+			add_opinion_modifier = {
+				target = ARG
+				modifier = improving_relations
+			}
+			send_embargo = URG
+		}
+		BOL = {
+			# Nuestra opinion de Uruguay
+			add_opinion_modifier = {
+				target = URG
+				modifier = we_are_destabilizing
+			}
+			# Opinion de Uruguay sobre nosotros
+			reverse_add_opinion_modifier = {
+				target = URG
+				modifier = foreign_interference
+			}
+			# Nuestra opinion de Argentina
+			add_opinion_modifier = {
+				target = ARG
+				modifier = improving_relations
+			}
+			send_embargo = URG
+		}
+		CHI = {
+			# Nuestra opinion de Uruguay
+			add_opinion_modifier = {
+				target = URG
+				modifier = we_are_destabilizing
+			}
+			# Opinion de Uruguay sobre nosotros
+			reverse_add_opinion_modifier = {
+				target = URG
+				modifier = foreign_interference
+			}
+			# Nuestra opinion de Argentina
+			add_opinion_modifier = {
+				target = ARG
+				modifier = improving_relations
+			}
+			send_embargo = URG
+		}
+	}
+}
+
+#
+#
+#
+############################################################################################################################
+# Campaña de Liberacion ✅
+############################################################################################################################
+country_event = {
+	id = effect_for_urg.8
+	title = "Campaña de Liberación"
+	desc = "Argentina decide lanzar una campaña militar para liberar a Uruguay de la influencia fascista. Argumentan que no tolerarán la presencia de un gobierno fascista en sus fronteras y que tienen un derecho histórico sobre Uruguay."
+	is_triggered_only = yes
+	option = {
+		name = "Es nuestro derecho histórico"
 		add_state_core = 300
 	}
 }
@@ -106,16 +331,15 @@ country_event = {
 #
 #
 ############################################################################################################################
-# Movilizar Ejercito a la frontera
+# Movilizar Ejercito a la frontera ✅
 ############################################################################################################################
 country_event = {
-	id = uruguay.2
+	id = effect_for_urg.9
 	title = "Esa región es nuestra por derecho"
 	desc = "Argentina moviliza su ejército hacia la frontera de Uruguay. La tensión aumenta."
 	is_triggered_only = yes
 	option = {
 		name = "Argentina Renacerá en Grandeza"
-		add_political_power = 100
 		# Nuestra opinion sobre Uruguay
 		add_opinion_modifier = {
 			target = URG
@@ -126,150 +350,31 @@ country_event = {
 			target = URG
 			modifier = they_want_war
 		}
-		country_event = {
-			id = uruguay_reponse.2
-			days = -1
+		create_wargoal = {
+			target = URG
+			type = take_claimed_state
 		}
 	}
 }
 
+# ESTE EVENTO DISPARA USA
+# ---
 #
 #
 #
 ############################################################################################################################
-# RESPUESTA DIPLOMATICA DE URUGUAY
+# CAMPANHA: TOMAR ESTADO ⏱
 ############################################################################################################################
 country_event = {
-	id = uruguay_reponse.2
-	title = "¿Quién Conoce a Uruguay?"
-	desc = "La Tensión Alcanza un Punto Crítico: la Guerra es Inminente"
+	id = effect_for_urg.11
+	title = "Viva la libertad!"
+	desc = "Argentina reclama su derecho sobre Uruguay de manera violenta, La guerra Comienza"
 	is_triggered_only = yes
 	option = {
-		name = "Por la Gloria de Argentina"
-		# Nuestra opinion sobre Uruguay
-		add_opinion_modifier = {
+		name = "Vamos!"
+		declare_war_on = {
 			target = URG
-			modifier = its_our_right
-		}
-		# Opinion de Uruguay sobre nosotros
-		reverse_add_opinion_modifier = {
-			target = URG
-			modifier = they_want_war
-		}
-	}
-}
-
-# MEJORAR
-#
-#
-########################################
-# INCREMENTAR TENSION CON BOLIVIA
-########################################
-country_event = {
-	id = bolivia.1
-	title = "Sur America no puede ser neutral!"
-	desc = "Las recientes declaraciones del presidente Argentino resonaron fuerte en el territorio boliviano, ellos no quieren involucrarse en la guerra"
-	is_triggered_only = yes
-	option = {
-		name = "Los debiles no tienen lugar en este continente!"
-		add_political_power = -30
-		# Nuestra opinion sobre Bolivia
-		add_opinion_modifier = {
-			target = BOL
-			modifier = they_are_weak
-		}
-		# Opinion de Bolivia sobre nosotros
-		reverse_add_opinion_modifier = {
-			target = BOL
-			modifier = they_want_war
-		}
-		country_event = {
-			id = bolivia_response.1
-			days = 30
-		}
-	}
-}
-
-# MEJORAR
-#
-#
-########################################
-# INCREMENTAR TENSION CON BOLIVIA
-########################################
-country_event = {
-	id = bolivia_response.1
-	title = "La Respuesta de Bolivia"
-	desc = "Bolivia busca calmar las aguas con Argentina, intentando evitar un conflicto bélico."
-	is_triggered_only = yes
-	# Opciones para Argentina
-	option = {
-		name = "Aceptamos la tregua, por ahora..."
-		# Nuestra opinion sobre Bolivia
-		add_opinion_modifier = {
-			target = BOL
-			modifier = improving_relations
-		}
-		# Opinion de Bolivia sobre nosotros
-		reverse_add_opinion_modifier = {
-			target = BOL
-			modifier = improving_relations
-		}
-		# Desbloquea evento "Presion por Uruguay" si Uruguay ha sido anexionado
-		if = {
-			limit = {
-				has_country_flag = uruguay_annexed
-			}
-		}
-		country_event = {
-			id = bolivia_uruguay_preasure.1
-			days = 30
-		}
-	}
-	option = {
-		name = "¡Bolivia no nos intimidará!"
-		add_opinion_modifier = {
-			target = BOL
-			modifier = they_are_weak
-		}
-		reverse_add_opinion_modifier = {
-			target = BOL
-			modifier = they_want_war
-		}
-		# Desbloquea Evento "Reprimenda Estadounidense"
-		country_event = {
-			id = usa_reprimand.1
-			days = 7
-		}
-	}
-}
-
-# MEJORAR
-#
-#
-########################################
-# Reprimenda Estadounidense
-########################################
-country_event = {
-	id = usa_reprimand.1
-	title = "Cuando no los gringos..."
-	desc = "Los deseos belicos argentinos, no han caido bien en Washington. USA quiere ponerle frenos al gobierno de Argentina antes de que sea demaciado tarde"
-	is_triggered_only = yes
-	# Opciones para Argentina
-	option = {
-		name = "Estos yankees..."
-		# Nuestra opinion sobre USA
-		add_opinion_modifier = {
-			target = USA
-			modifier = its_our_right
-		}
-		# Opinion de USA sobre nosotros
-		reverse_add_opinion_modifier = {
-			target = USA
-			modifier = they_want_war
-		}
-		add_popularity = {
-			ideology = democratic
-			popularity = 0.08
+			type = take_claimed_state
 		}
 	}
 }

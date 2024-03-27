@@ -13,7 +13,7 @@ opinion_modifiers = {
 	}
 	####################################
 	####################################
-	# CUSTOM MODIFIERS
+	# CUSTOM MODIFIERS - NOSOTROS A ELLOS
 	its_our_right = {
 		value = -50
 	}
@@ -24,7 +24,10 @@ opinion_modifiers = {
 		value = -30
 	}
 	improving_relations = {
-		value = 60
+		value = 40
+	}
+	we_are_destabilizing = {
+		value = -10
 	}
 	####################################
 	####################################

@@ -1,0 +1,8 @@
+make_argentina_great_again = {
+	priority = 10
+	allowed = {
+		always = yes
+	}
+	visible = {
+	}
+}

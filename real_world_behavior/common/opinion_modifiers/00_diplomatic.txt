@@ -1,0 +1,21 @@
+opinion_modifiers = {
+	faction_traitor = {
+		value = 100
+	}
+	faction_traitor_trade = {
+		trade = yes
+		value = -40
+	}
+	our_liberators = {
+		value = 40
+		months = 18
+		decay = 1
+	}
+	### CUSTOM DIPLOMATIC
+	they_want_war = {
+		value = -50
+	}
+	improving_relations = {
+		value = 60
+	}
+}

@@ -1,0 +1,275 @@
+############################################################################################################################
+############################################################################################################################
+############################################################################################################################
+# ARGENTINA EVENTS
+############################################################################################################################
+############################################################################################################################
+############################################################################################################################
+#
+#
+#
+############################################################################################################################
+# NAMESPACES
+############################################################################################################################
+add_namespace = argentina
+add_namespace = argentina_propaganda
+add_namespace = uruguay_reponse
+add_namespace = uruguay
+add_namespace = bolivia
+add_namespace = bolivia_response
+add_namespace = bolivia_uruguay_pressure
+add_namespace = usa_reprimand
+#
+#
+#
+############################################################################################################################
+# Campaña de Desinformación
+############################################################################################################################
+country_event = {
+	id = argentina_propaganda.1
+	title = "Propaganda Argentina sobre Uruguay"
+	desc = "Argentina difunde propaganda falsa, alegando que Uruguay conspira con el Reino Unido para invadir la Patagonia y la Pampa, y usurpar las Islas Malvinas. Esta estratagema busca justificar una posible guerra de reclamación territorial y ganar apoyo popular."
+	is_triggered_only = yes
+	option = {
+		name = "Activar Campaña de Desinformación"
+		add_stability = 0.3
+		add_war_support = 0.3
+		ai_chance = {
+			factor = 0
+		}
+		country_event = {
+			id = uruguay_reponse.1
+			days = 15
+		}
+	}
+}
+
+#
+#
+#
+############################################################################################################################
+# Uruguay responde a nuestra propaganda
+############################################################################################################################
+country_event = {
+	id = uruguay_reponse.1
+	title = "Uruguay Responde a Nuestra Propaganda"
+	desc = "Uruguay ha recibido nuestros periódicos, enterándose de nuestra propaganda. Como respuesta, han optado por una acción diplomática. Este incidente ha deteriorado las relaciones bilaterales y ha aumentado las tensiones entre ambas naciones."
+	is_triggered_only = yes
+	option = {
+		name = "Esta Fue la Reacción de Uruguay"
+		# Nuestra opinion de Uruguay
+		add_opinion_modifier = {
+			target = URG
+			modifier = its_our_right
+		}
+		# Opinion de Uruguay sobre nosotros
+		reverse_add_opinion_modifier = {
+			target = URG
+			modifier = they_want_war
+		}
+		country_event = {
+			id = uruguay.1
+			days = 30
+		}
+	}
+}
+
+#
+#
+#
+############################################################################################################################
+# Incrememtar la tension con Uruguay
+############################################################################################################################
+country_event = {
+	id = uruguay.1
+	title = "Declaración de Soberanía Argentina sobre Uruguay"
+	desc = "Argentina proclama el territorio uruguayo como propio, reviviendo antiguas aspiraciones territoriales y evocando el orgullo nacional argentino."
+	is_triggered_only = yes
+	option = {
+		name = "Es nuestro derecho histórico legítimo"
+		add_political_power = -50
+		# Nuestra opinion sobre Uruguay
+		add_opinion_modifier = {
+			target = URG
+			modifier = its_our_right
+		}
+		# Opinion de Urugauy sobre nosotros
+		reverse_add_opinion_modifier = {
+			target = URG
+			modifier = they_want_war
+		}
+		add_state_core = 300
+	}
+}
+
+#
+#
+#
+############################################################################################################################
+# Movilizar Ejercito a la frontera
+############################################################################################################################
+country_event = {
+	id = uruguay.2
+	title = "Esa región es nuestra por derecho"
+	desc = "Argentina moviliza su ejército hacia la frontera de Uruguay. La tensión aumenta."
+	is_triggered_only = yes
+	option = {
+		name = "Argentina Renacerá en Grandeza"
+		add_political_power = 100
+		# Nuestra opinion sobre Uruguay
+		add_opinion_modifier = {
+			target = URG
+			modifier = its_our_right
+		}
+		# Opinion de Urugauy sobre nosotros
+		reverse_add_opinion_modifier = {
+			target = URG
+			modifier = they_want_war
+		}
+		country_event = {
+			id = uruguay_reponse.2
+			days = -1
+		}
+	}
+}
+
+#
+#
+#
+############################################################################################################################
+# RESPUESTA DIPLOMATICA DE URUGUAY
+############################################################################################################################
+country_event = {
+	id = uruguay_reponse.2
+	title = "¿Quién Conoce a Uruguay?"
+	desc = "La Tensión Alcanza un Punto Crítico: la Guerra es Inminente"
+	is_triggered_only = yes
+	option = {
+		name = "Por la Gloria de Argentina"
+		# Nuestra opinion sobre Uruguay
+		add_opinion_modifier = {
+			target = URG
+			modifier = its_our_right
+		}
+		# Opinion de Uruguay sobre nosotros
+		reverse_add_opinion_modifier = {
+			target = URG
+			modifier = they_want_war
+		}
+	}
+}
+
+# MEJORAR
+#
+#
+########################################
+# INCREMENTAR TENSION CON BOLIVIA
+########################################
+country_event = {
+	id = bolivia.1
+	title = "Sur America no puede ser neutral!"
+	desc = "Las recientes declaraciones del presidente Argentino resonaron fuerte en el territorio boliviano, ellos no quieren involucrarse en la guerra"
+	is_triggered_only = yes
+	option = {
+		name = "Los debiles no tienen lugar en este continente!"
+		add_political_power = -30
+		# Nuestra opinion sobre Bolivia
+		add_opinion_modifier = {
+			target = BOL
+			modifier = they_are_weak
+		}
+		# Opinion de Bolivia sobre nosotros
+		reverse_add_opinion_modifier = {
+			target = BOL
+			modifier = they_want_war
+		}
+		country_event = {
+			id = bolivia_response.1
+			days = 30
+		}
+	}
+}
+
+# MEJORAR
+#
+#
+########################################
+# INCREMENTAR TENSION CON BOLIVIA
+########################################
+country_event = {
+	id = bolivia_response.1
+	title = "La Respuesta de Bolivia"
+	desc = "Bolivia busca calmar las aguas con Argentina, intentando evitar un conflicto bélico."
+	is_triggered_only = yes
+	# Opciones para Argentina
+	option = {
+		name = "Aceptamos la tregua, por ahora..."
+		# Nuestra opinion sobre Bolivia
+		add_opinion_modifier = {
+			target = BOL
+			modifier = improving_relations
+		}
+		# Opinion de Bolivia sobre nosotros
+		reverse_add_opinion_modifier = {
+			target = BOL
+			modifier = improving_relations
+		}
+		# Desbloquea evento "Presion por Uruguay" si Uruguay ha sido anexionado
+		if = {
+			limit = {
+				has_country_flag = uruguay_annexed
+			}
+		}
+		country_event = {
+			id = bolivia_uruguay_preasure.1
+			days = 30
+		}
+	}
+	option = {
+		name = "¡Bolivia no nos intimidará!"
+		add_opinion_modifier = {
+			target = BOL
+			modifier = they_are_weak
+		}
+		reverse_add_opinion_modifier = {
+			target = BOL
+			modifier = they_want_war
+		}
+		# Desbloquea Evento "Reprimenda Estadounidense"
+		country_event = {
+			id = usa_reprimand.1
+			days = 7
+		}
+	}
+}
+
+# MEJORAR
+#
+#
+########################################
+# Reprimenda Estadounidense
+########################################
+country_event = {
+	id = usa_reprimand.1
+	title = "Cuando no los gringos..."
+	desc = "Los deseos belicos argentinos, no han caido bien en Washington. USA quiere ponerle frenos al gobierno de Argentina antes de que sea demaciado tarde"
+	is_triggered_only = yes
+	# Opciones para Argentina
+	option = {
+		name = "Estos yankees..."
+		# Nuestra opinion sobre USA
+		add_opinion_modifier = {
+			target = USA
+			modifier = its_our_right
+		}
+		# Opinion de USA sobre nosotros
+		reverse_add_opinion_modifier = {
+			target = USA
+			modifier = they_want_war
+		}
+		add_popularity = {
+			ideology = democratic
+			popularity = 0.08
+		}
+	}
+}

@@ -8,7 +8,33 @@
 #
 #
 #
-make_argentina_great_again = {
+URUGUAY = {
+	########################################################################################################################
+	# Desestabilizar fomentado grupos opositores ✅
+	########################################################################################################################
+	CREAR_OPOSITORES = {
+		icon = GFX_decision_icon_default
+		available = {
+			tag = ARG
+			country_exists = URG
+		}
+		allowed = {
+			always = yes
+		}
+		target_trigger = {
+			from = {
+				tag = URG
+			}
+		}
+		cost = 10
+		fire_only_once = no
+		days_re_enable = 15
+		complete_effect = {
+			country_event = {
+				id = d_urg.1
+			}
+		}
+	}
 	########################################################################################################################
 	# Campaña: Financiar y armar grupos de oposición política ✅
 	########################################################################################################################
@@ -109,6 +135,26 @@ make_argentina_great_again = {
 			URG = {
 				fascism > 0.3
 			}
+			AND = {
+				BOL = {
+					has_opinion = {
+						target = URG
+						value < 30
+					}
+				}
+				CHL = {
+					has_opinion = {
+						target = URG
+						value < 30
+					}
+				}
+				BRA = {
+					has_opinion = {
+						target = URG
+						value < 30
+					}
+				}
+			}
 		}
 		allowed = {
 			always = yes
@@ -171,6 +217,8 @@ make_argentina_great_again = {
 				id = effect_for_urg.9
 				days = -1
 			}
+		}
+		activation = {
 		}
 	}
 	########################################################################################################################

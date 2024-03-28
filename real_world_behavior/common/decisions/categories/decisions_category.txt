@@ -1,8 +1,6 @@
-make_argentina_great_again = {
+URUGUAY = {
 	priority = 10
-	allowed = {
-		always = yes
-	}
 	visible = {
+		tag = ARG
 	}
 }

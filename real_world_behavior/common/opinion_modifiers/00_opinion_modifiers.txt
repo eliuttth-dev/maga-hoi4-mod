@@ -24,7 +24,10 @@ opinion_modifiers = {
 		value = -30
 	}
 	improving_relations = {
-		value = 40
+		value = 50
+	}
+	we_will_protect_you = {
+		value = 80
 	}
 	we_are_destabilizing = {
 		value = -10

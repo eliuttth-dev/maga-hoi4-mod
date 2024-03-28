@@ -11,20 +11,258 @@
 ############################################################################################################################
 # NAMESPACES
 ############################################################################################################################
-add_namespace = argentina
-add_namespace = argentina_propaganda
-add_namespace = uruguay_reponse
-add_namespace = uruguay
-add_namespace = bolivia
-add_namespace = bolivia_response
-add_namespace = bolivia_uruguay_pressure
-add_namespace = usa_reprimand
-add_namespace = desestabilizar_urg
 add_namespace = effect_for_urg
 add_namespace = usa_helper
+add_namespace = nazi_helper
+add_namespace = ai_urg_response
+# DECISIONES DE MISIONES
+add_namespace = d_urg
+# EVENTOS REVUELTAS
+add_namespace = revueltas_realizadas
+# EVENTOS RESPUESTA REVUELTAS
+add_namespace = revueltas_controladas
 #
 #
 #
+############################################################################################################################
+# EVENTO DESESTABILIZAR URUGUAY CREANDO GRUPOS OPOSITORES
+############################################################################################################################
+country_event = {
+	id = d_urg.1
+	title = "Operación: Desestabilizar Uruguay"
+	desc = "La operación tiene como objetivo fomentar diversas corrientes políticas para desestabilizar y disminuir el apoyo a la guerra en Uruguay. Se impulsarán grupos opositores, cuya adopción de ideologías puede intensificar la desestabilización."
+	is_triggered_only = yes
+	# Opción para apoyar grupos fascistas
+	option = {
+		name = "Apoyo a grupos fascistas"
+		URG = {
+			if = {
+				limit = {
+					has_government = fascism
+				}
+				add_stability = 0.02
+				add_war_support = 0.02
+				add_popularity = {
+					ideology = fascism
+					popularity = 0.02
+				}
+			}
+			else = {
+				add_stability = -0.02
+				add_war_support = -0.02
+				add_popularity = {
+					ideology = fascism
+					popularity = 0.02
+				}
+			}
+		}
+		random_list = {
+			9 = {
+				country_event = {
+					id = revueltas_realizadas.1
+				}
+			}
+			12 = {
+				country_event = {
+					id = revueltas_controladas.1
+				}
+			}
+			79 = {
+			}
+			# Opción vacía
+		}
+	}
+	# Opción para apoyar grupos democráticos
+	option = {
+		name = "Apoyo a grupos democráticos"
+		URG = {
+			if = {
+				limit = {
+					has_government = democratic
+				}
+				add_stability = 0.02
+				add_war_support = 0.02
+				add_popularity = {
+					ideology = democratic
+					popularity = 0.02
+				}
+			}
+			else = {
+				add_stability = -0.02
+				add_war_support = -0.02
+				add_popularity = {
+					ideology = democratic
+					popularity = 0.02
+				}
+			}
+		}
+		random_list = {
+			9 = {
+				country_event = {
+					id = revueltas_realizadas.2
+				}
+			}
+			12 = {
+				country_event = {
+					id = revueltas_controladas.2
+				}
+			}
+			79 = {
+			}
+			# Opción vacía
+		}
+	}
+	# Opción para apoyar grupos comunistas
+	option = {
+		name = "Apoyo a grupos comunistas"
+		URG = {
+			if = {
+				limit = {
+					has_government = communism
+				}
+				add_stability = 0.02
+				add_war_support = 0.02
+				add_popularity = {
+					ideology = communism
+					popularity = 0.02
+				}
+			}
+			else = {
+				add_stability = -0.02
+				add_war_support = -0.02
+				add_popularity = {
+					ideology = communism
+					popularity = 0.02
+				}
+			}
+		}
+		random_list = {
+			9 = {
+				country_event = {
+					id = revueltas_realizadas.3
+				}
+			}
+			12 = {
+				country_event = {
+					id = revueltas_controladas.3
+				}
+			}
+			79 = {
+			}
+			# Opción vacía
+		}
+	}
+}
+
+# Eventos de revueltas
+country_event = {
+	id = revueltas_realizadas.1
+	title = "Disturbios Fascistas en Uruguay: Caos y Disrupción"
+	desc = "El fervor fascista se desata en Uruguay, desencadenando disturbios y caos en las calles. La agitación política y la violencia amenazan con sumir al país en un estado de crisis y desorden generalizado."
+	is_triggered_only = yes
+	option = {
+		name = "Está yendo mejor de lo que esperábamos."
+		URG = {
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.04
+			}
+			add_war_support = -0.025
+			add_stability = -0.025
+		}
+	}
+}
+
+country_event = {
+	id = revueltas_realizadas.2
+	title = "Disturbios Democráticos en Uruguay: Caos y Disrupción"
+	desc = "El fervor democrático se desata en Uruguay, desencadenando disturbios y caos en las calles. La agitación política y la violencia amenazan con sumir al país en un estado de crisis y desorden generalizado."
+	is_triggered_only = yes
+	option = {
+		name = "Está yendo mejor de lo que esperábamos."
+		URG = {
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.04
+			}
+			add_war_support = -0.025
+			add_stability = -0.025
+		}
+	}
+}
+
+country_event = {
+	id = revueltas_realizadas.3
+	title = "Disturbios Comunistas en Uruguay: Caos y Disrupción"
+	desc = "El fervor comunista se desata en Uruguay, desencadenando disturbios y caos en las calles. La agitación política y la violencia amenazan con sumir al país en un estado de crisis y desorden generalizado."
+	is_triggered_only = yes
+	option = {
+		name = "Está yendo mejor de lo que esperábamos."
+		URG = {
+			add_popularity = {
+				ideology = communism
+				popularity = 0.04
+			}
+			add_war_support = -0.025
+			add_stability = -0.025
+		}
+	}
+}
+
+country_event = {
+	id = revueltas_controladas.1
+	title = "Uruguay Contiene el Auge Fascista"
+	desc = "Uruguay ha logrado contener el auge fascista dentro de sus fronteras. Con medidas firmes y un compromiso renovado, el país se esfuerza por mantener la estabilidad y preservar sus valores democráticos ante los desafíos ideológicos."
+	is_triggered_only = yes
+	option = {
+		name = "Después de todo el dinero que hemos invertido... qué decepción."
+		URG = {
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.09
+			}
+			add_stability = 0.15
+			add_war_support = 0.08
+		}
+	}
+}
+
+country_event = {
+	id = revueltas_controladas.2
+	title = "Uruguay Contiene el Auge Democrático"
+	desc = "Uruguay ha logrado contener el auge democrático dentro de sus fronteras. Con medidas firmes y un compromiso renovado, el país se esfuerza por mantener la estabilidad y defender los ante los desafíos ideológicos."
+	is_triggered_only = yes
+	option = {
+		name = "Después de todo el dinero que hemos invertido... qué decepción."
+		URG = {
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.09
+			}
+			add_stability = 0.15
+			add_war_support = 0.08
+		}
+	}
+}
+
+country_event = {
+	id = revueltas_controladas.3
+	title = "Uruguay Contiene el Auge Comunista"
+	desc = "Uruguay ha logrado contener el auge comunista dentro de sus fronteras. Con medidas firmes y un compromiso renovado, el país se esfuerza por mantener la estabilidad y defender los ante los desafíos ideológicos."
+	is_triggered_only = yes
+	option = {
+		name = "Después de todo el dinero que hemos invertido... qué decepción."
+		URG = {
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.09
+			}
+			add_stability = 0.15
+			add_war_support = 0.08
+		}
+	}
+}
+
 ############################################################################################################################
 # Campaña: Financiar y armar grupos de oposición política ✅
 ############################################################################################################################
@@ -60,7 +298,7 @@ country_event = {
 		#			diplomatic_relation = {
 		#				country = URG
 		#				relation = guarantee
-		#				active = no
+		#				active = nos
 		#			}
 		#		}
 	}
@@ -148,8 +386,10 @@ country_event = {
 		}
 		add_threat = 1
 		URG = {
-			ideology = fascism
-			popularity = 0.1
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.1
+			}
 		}
 	}
 }
@@ -196,7 +436,7 @@ country_event = {
 				modifier = improving_relations
 			}
 		}
-		CHI = {
+		CHL = {
 			# Nuestra opinion de Uruguay
 			add_opinion_modifier = {
 				target = URG
@@ -289,7 +529,7 @@ country_event = {
 			}
 			send_embargo = URG
 		}
-		CHI = {
+		CHL = {
 			# Nuestra opinion de Uruguay
 			add_opinion_modifier = {
 				target = URG
@@ -324,6 +564,60 @@ country_event = {
 	option = {
 		name = "Es nuestro derecho histórico"
 		add_state_core = 300
+		country_event = {
+			id = nazi_helper.1
+			days = 3
+		}
+	}
+}
+
+# Respaldo Nazi al movimiento fascista en Uruguay - AI EVENTO
+country_event = {
+	id = nazi_helper.1
+	title = "¡La Grandeza Facista no será Interrumpida en Uruguay!"
+	desc = "Los nazis respaldan al movimiento fascista en Uruguay, prometiendo no permitir interferencias externas en su gran logro uruguayo y justificando su apoyo como defensa contra influencias foráneas."
+	is_triggered_only = yes
+	option = {
+		name = "Esto podría descontrolarse"
+		GER = {
+			add_opinion_modifier = {
+				target = URG
+				modifier = we_will_protect_you
+			}
+			reverse_add_opinion_modifier = {
+				target = URG
+				modifier = improving_relations
+			}
+			add_opinion_modifier = {
+				target = ARG
+				modifier = they_want_war
+			}
+			reverse_add_opinion_modifier = {
+				target = ARG
+				modifier = they_want_war
+			}
+		}
+		country_event = {
+			id = nazi_helper.2
+			days = 3
+		}
+	}
+}
+
+country_event = {
+	id = nazi_helper.2
+	title = "AI HELP"
+	desc = "AI URUGUAY HELP"
+	fire_only_once = yes
+	option = {
+		name = "Embargo"
+		ai_chance = {
+			factor = 100
+		}
+		GER = {
+			send_embargo = ARG
+			add_threat = 2
+		}
 	}
 }
 
@@ -357,7 +651,7 @@ country_event = {
 	}
 }
 
-# ESTE EVENTO DISPARA USA
+# ESTE EVENTO DISPARA USA effect_for_urg.10
 # ---
 #
 #
